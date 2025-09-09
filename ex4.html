@@ -11,19 +11,40 @@
 
    <input type="text" id="inputText">
    <!-- add a button here for adding new item -->
-
+   <button onclick="addItem()">Enter</button>
    <ul>
-      <li>Notebook<!--<button>Delete</button></li>-->
-      <li>Jello</li>
-      <li>Spinach</li>
-      <li>Rice</li>
-      <li>Birthday Cake</li>
-      <li>Candles</li>
+      <li>Notebook<button onclick="delItem(this.parentNode)">Delete</button></li>
+      <li>Jello<button onclick="delItem(this.parentNode)">Delete</button></li>
+      <li>Spinach<button onclick="delItem(this.parentNode)">Delete</button></li>
+      <li>Rice<button onclick="delItem(this.parentNode)">Delete</button></li>
+      <li>Birthday Cake<button onclick="delItem(this.parentNode)">Delete</button></li>
+      <li>Candles<button onclick="delItem(this.parentNode)">Delete</button></li>
    </ul>
 
    <script>
 
       // add code here
+      function addItem() {
+         const itemVal = document.getElementById("inputText").value;
+
+         // Create the li element
+         let liElem = document.createElement("li");
+         liElem.innerText = itemVal;
+         const btnElem = document.createElement("button");
+         btnElem.innerText = "Delete";
+         btnElem.addEventListener("click", function() {
+            delItem(this.parentNode);
+         })
+         liElem.appendChild(btnElem);
+         // Build the DOM tree
+         const ulElem = document.getElementsByTagName("ul")[0];
+         ulElem.appendChild(liElem);
+
+      }
+
+      function delItem(obj) {
+         obj.remove();
+      }
 
    </script>
 
